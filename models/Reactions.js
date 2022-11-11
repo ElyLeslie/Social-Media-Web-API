@@ -15,19 +15,13 @@ const reactionsSchema = new Schema({
       createdAt: {
         type: Date,
         default: Date.now,
+        get: format_time,
+        required: true,
       },
       username: {
         type: String,
         required: true,
       }
-},
-{ 
-    toJSON: {
-        getters: true,
-
-    },
-    id: false,
-
 }
 )
 

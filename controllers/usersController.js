@@ -1,14 +1,14 @@
 const { ObjectId } = require('mongoose').Types;
-const { User, Thought } = require('../models');
+const { Users, Thoughts } = require('../models');
 
 module.exports = {
     getUsers(req, res) {
-        User.find()
+        Users.find()
         .then((users) => res.json(users))
         .catch((err) => res.status(500).json(err));
     },
     getSingleUser(req, res) {
-        User.findOne({ _id: req.params.userId})
+        Users.findOne({ _id: req.params.userId})
         .select('-__v')
         .then((user) =>
         !user? res.status(404).json({ message: 'No User found with that ID' })
@@ -17,12 +17,12 @@ module.exports = {
         .catch((err) => res.status(500).json(err));
     },
     createUser(req, res) {
-        User.create(req.body)
+        Users.create(req.body)
         .then((user) => res.json(user))
         .catch((err) => res.status(500).json(err))
     },
     updateUser(req, res) {
-        User.findOneAndUpdate(
+        Users.findOneAndUpdate(
             {_id: req.params.userId},
             {$set: req.body},
             {runValidators: true, new: true}
@@ -34,7 +34,7 @@ module.exports = {
         .catch((err) => res.status(500).json(err));
     },
     deleteUser(req,res) {
-        User.findOneAndDelete(
+        Users.findOneAndDelete(
             {_id: req.params.userId}
         )
         .then((user) => 
@@ -44,7 +44,7 @@ module.exports = {
         .catch((err) => res.status(500).json(err));
     },
     addFriend(req, res) {
-        User.findOneAndUpdate(
+        Users.findOneAndUpdate(
             {_id: req.params.userId},
             {$push: {friends: req.params.friendsId} },
             {runValidators: true, new: true}
@@ -58,7 +58,7 @@ module.exports = {
     },
 
     deleteFriend(req, res) {
-        User.findOneAndDelete(
+        Users.findOneAndDelete(
             {_id: req.params.userId},
             {$push: {friends: req.params.friendsId} },
             {runValidators: true, new: true}
