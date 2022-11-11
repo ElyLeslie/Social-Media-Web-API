@@ -1,6 +1,7 @@
 const { Types, Schema } = require('mongoose')
 // Although it is under the models folder, this file is technically not a model due to the Types, Schema const thereabove.
 // It was never declared as a model.
+const { format_time } = require('../utils/data');
 
 const reactionsSchema = new Schema({
     reactionID: {

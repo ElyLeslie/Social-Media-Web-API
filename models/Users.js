@@ -3,6 +3,10 @@ const { Schema, model } = require('mongoose');
 // const thoughtsSchema = require('./Thoughts')
 
 // Schema to create Student model
+const validateEmail = function(email) {
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email)
+};
 const userSchema = new Schema(
   {
     username: {
