@@ -1,7 +1,3 @@
-// We need API/users
-
-// api/users/:userId/friends/friendId
-
 const router = require('express').Router();
 const {
   getCourses,
@@ -11,10 +7,10 @@ const {
   deleteCourse,
 } = require('../../controllers/courseController.js');
 
-// /api/courses
+
 router.route('/').get(getCourses).post(createCourse);
 
-// /api/courses/:courseId
+
 router
   .route('/:courseId')
   .get(getSingleCourse)
