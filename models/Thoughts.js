@@ -5,7 +5,7 @@ const reactionsSchema = require('./Reactions')
 const thoughtsSchema = new Schema(
   {
     
-    thoughtName: {
+    thoughtText: {
       type: String,
       required: true,
       maxlength: 280,

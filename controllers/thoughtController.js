@@ -3,7 +3,7 @@ const { ObjectId } = require('mongoose').Types;
 
 module.exports = {
     getThoughts(req, res) {
-        Thought.find()
+        Thoughts.find()
             .then((thoughts) => res.json(thoughts))
             .catch((err) => res.status(500).json(err))
     },
@@ -22,7 +22,7 @@ module.exports = {
     createThought(req, res) {
         Thoughts.create(req.body)
             .then((thought) => {
-                return User.findOneAndUpdate(
+                return Users.findOneAndUpdate(
                     { _id: req.body.userId },
                     { $addToSet: { thoughts: thought._id } },
                     { new: true }

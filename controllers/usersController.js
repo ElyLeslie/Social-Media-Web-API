@@ -3,6 +3,7 @@ const { Users, Thoughts } = require('../models');
 
 module.exports = {
     getUsers(req, res) {
+        console.log("This is a test.")
         Users.find()
         .then((users) => res.json(users))
         .catch((err) => res.status(500).json(err));
@@ -58,9 +59,9 @@ module.exports = {
     },
 
     deleteFriend(req, res) {
-        Users.findOneAndDelete(
+        Users.findOneAndUpdate(
             {_id: req.params.userId},
-            {$push: {friends: req.params.friendsId} },
+            {$pull: {friends: req.params.friendsId} },
             {runValidators: true, new: true}
         )
         .then((user) => 
